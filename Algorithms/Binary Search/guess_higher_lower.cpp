@@ -1,6 +1,6 @@
 // Guessing number if higher or lower
 // SlothyCoder16
-// July 14, 2020
+// July 14, 2020 
 
 /**
  * Forward declaration of guess API.
