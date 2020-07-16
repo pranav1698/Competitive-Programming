@@ -1,6 +1,6 @@
 // Find index of peak element in Mountain Array
 // SlothyCoder16
-// July 15, 2020
+// July 15, 2020 
 
 class Solution {
 public:
