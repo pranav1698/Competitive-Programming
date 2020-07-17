@@ -1,6 +1,6 @@
 // Comparing Strings with Backspace
 // SlothyCoder16
-// July 17, 2020
+// July 17, 2020 
 
 class StringStack{
 public:

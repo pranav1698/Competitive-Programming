@@ -1,4 +1,4 @@
-// Find reqpeated dna subsequences using hashmap
+// Find reqpeated dna subsequences using hashmap 
 // SlothyCoder16
 // July 15, 2020
 
