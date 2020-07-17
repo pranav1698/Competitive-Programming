@@ -1,6 +1,6 @@
 // Find next greatest letter using binary search
 // SlothyCoder16
-// July 16, 2020
+// July 16, 2020 
 
 class Solution {
 public:
