@@ -33,6 +33,15 @@ void print(int* stack, int numElements) {
   }
 }
 
+// Is Stack Empty??
+bool empty() {
+  if(numElements == 0) {
+    return true;
+  }
+
+  return false;
+}
+
 int main() {
   int arr[] = {1, 2, 3, 4, 5};
   int numElements=0;
