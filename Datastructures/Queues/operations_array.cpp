@@ -1,3 +1,7 @@
+// Implementation if queue using Fiexed Sized Arrays
+// SlothyCoder16
+// July 19, 2020
+
 #include <bits/stdc++.h>
 using namespace std;
 
