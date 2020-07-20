@@ -1,4 +1,4 @@
-// Construction of a baseic tree using node in C++
+// Construction of a baseic tree node using node in C++
 // SlothyCoder16
 // July 12, 2020
 
