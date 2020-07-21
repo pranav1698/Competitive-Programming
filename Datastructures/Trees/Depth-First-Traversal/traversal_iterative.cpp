@@ -30,20 +30,27 @@ Node* createTree(vector<int> v, Node* root, int index) {
 }
 
 // Iterative Postorder Traversal
-// void postorderTraversal(Node* root) {
-//   stack<Node*> s;
-//
-//   while(!s.empty() || root!=NULL) {
-//     if(root!=NULL){
-//       s.push(root);
-//       root = root->left;
-//     } else {
-//       cout << s.top()->data << endl;
-//       s.pop();
-//       root = s.top()->right;
-//     }
-//   }
-// }
+void postorderTraversal(Node* root) {
+  stack<Node*> s;
+  stack<Node*> out;
+
+  s.push(root);
+  while(!s.empty()) {
+    Node* curr = s.top();
+    s.pop();
+    out.push(curr);
+
+    if(curr->left)
+      s.push(curr->left);
+    if(curr->right)
+      s.push(curr->right);
+  }
+
+  while(!out.empty()){
+    cout << out.top()->data << endl;
+    out.pop();
+  }
+}
 
 // Iterative Preorder Traversal
 void preorderTraversal(Node* root) {
@@ -90,6 +97,6 @@ int main() {
   cout << "Preorder Traversal: " << endl;
   preorderTraversal(root);
 
-  // cout << "Postorder Traversal: " << endl;
-  // postorderTraversal(root);
+  cout << "Postorder Traversal: " << endl;
+  postorderTraversal(root);
 }
