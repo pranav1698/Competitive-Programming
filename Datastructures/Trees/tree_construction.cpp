@@ -21,10 +21,22 @@ Node* makeNode(int key) {
   return new_node;
 }
 
+bool is_in_tree(Node* root, int val) {
+  if(root == NULL)
+    return false;
+
+  if(root->data == val)
+    return true;
+
+  return is_in_tree(root->left, val) || is_in_tree(root->right, val);
+}
+
 
 int main() {
   Node* root = makeNode(4);
   root->left = makeNode(3);
   root->right = makeNode(5);
   cout << root->left->data << endl;
+
+  cout << is_in_tree(root, 6) << endl;
 }
