@@ -90,6 +90,21 @@ bool is_in_tree(Node* root, int val) {
   return is_in_tree(root->right, val);
 }
 
+// Is binary Search tree
+bool bsUtil(Node* root, long int minValue, long int maxValue) {
+  if(root == NULL) return true;
+
+  if(root->key > minValue &&
+    root->key < maxValue &&
+    bsUtil(root->left, minValue, root->key) &&
+    bsUtil(root->right, root->key, maxValue)) {
+      return true;
+  }
+
+  return false;
+}
+
+
 // Height of BST
 int height(Node* root) {
   if(root == NULL) return 0;
@@ -130,8 +145,12 @@ int main() {
   cout << "Height of the tree: " << height(root) << endl;
   cout << "The minimum element present in the tree: " << getMin(root) << endl;
   cout << "The maximum element present in the tree: " << getMax(root) << endl;
+  cout << bsUtil(root, LONG_MIN, LONG_MAX) << endl;
 
   deleteNode(root, 3);
   cout << "After Deletion " << endl;
   inorderPrint(root);
+
+
+  free(root);
 }
