@@ -1,3 +1,7 @@
+// Merge Sort C Implementation
+// SlothyCoder16
+// August 04, 2020
+
 #include <bits/stdc++.h>
 using namespace std;
 

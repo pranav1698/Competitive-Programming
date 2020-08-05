@@ -1,3 +1,7 @@
+// Merge Sort on a Linked List
+// SlothyCoder16
+// August 04, 2020
+
 #include <bits/stdc++.h>
 using namespace std;
 
