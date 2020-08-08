@@ -1,30 +1,36 @@
-// Finding path sum for the
+// Find required sum in binary tree
 // SlothyCoder16
-// July 27, 2020
+// August 08, 2020
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> v;
-    int count=0;
-    int pathSum(TreeNode* root, int sum)
-    {
-        helper(root,sum);
-        return count;
-    }
-    void helper(TreeNode* root,int sum)
-    {
-        if(root==NULL)
-            return;
-        v.push_back(root->val);
-        helper(root->left,sum);
-        helper(root->right,sum);
-        int temp=0;
-        for(int i=v.size()-1;i>=0;i--)
-        {
-            temp=temp+v[i];
-            if(temp==sum)
-                count++;
+    int getCount(TreeNode* root, int sum) {
+        if(root == NULL) return 0;
+
+        if(sum == root->val){
+            return 1 + getCount(root->left, sum - root->val) + getCount(root->right, sum - root->val);
         }
-        v.pop_back();
+
+        int leftRes = getCount(root->left, sum - root->val);
+        int rightRes = getCount(root->right, sum - root->val);
+
+        return leftRes + rightRes;
+    }
+
+    int pathSum(TreeNode* root, int sum) {
+        if(root == NULL) return 0;
+
+        return getCount(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
     }
 };
