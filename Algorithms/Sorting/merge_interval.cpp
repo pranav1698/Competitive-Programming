@@ -14,9 +14,8 @@ public:
 
         int n = intervals.size();
         int start = intervals[0][0],end = intervals[0][1];
-        for (int i = 0;i<n-1;i++) {
-            vector<int>& f = intervals[i];
-            vector<int>& s = intervals[i+1];
+        for (int i = 1;i<n;i++) {
+            vector<int>& s = intervals[i];
             if (end>=s[0]) {
                 end = max(end,s[1]);
             }

@@ -40,19 +40,15 @@ int main() {
   for(int i=0; i<vertices; i++)
     if(!visited[i]) dfsR(adjR, visited, s, i);
 
-  vector<int> reverseP;
-  while(!s.empty()) {
-    reverseP.push_back(s.top());
-    s.pop();
-  }
-
   for(int i=0; i<vertices; i++) visited[i] = false;
-
   vector<vector<int>> ans;
-  for(int i=0; i<reverseP.size(); i++){
-    if(!visited[reverseP[i]]) {
+  while(!s.empty()) {
+    int top = s.top();
+    s.pop();
+
+    if(!visited[top]) {
       vector<int> res;
-      explore(adj, visited, res, reverseP[i]);
+      explore(adj, visited, res, top);
       ans.push_back(res);
     }
   }
