@@ -2,33 +2,44 @@
 using namespace std;
 
 int main() {
-  vector<vector<int>> jobs = {{1,10}, {2,4}, {3,5}, {5,7}, {8,10}, {10,11}};
+	int n;
+	cin >> n;
+	while(n--) {
+	    int activities;
+	    cin >> activities;
+	    vector<int> s;
+	    vector<int> f;
+	    for(int i=0; i<activities; i++) {
+	        int start;
+	        cin >> start;
+	        s.push_back(start);
+	    }
 
-  sort(jobs.begin(), jobs.end(), [](const vector<int> i1, const vector<int> i2){
-    return i1[0] < i2[0];
-  });
+	    for(int i=0; i<activities; i++) {
+	        int finish;
+	        cin >> finish;
+	        f.push_back(finish);
+	    }
 
+	    vector<vector<int>> acts;
+	    for(int i=0; i<activities; i++) acts.push_back({s[i], f[i]});
+	    sort(acts.begin(), acts.end(), [](const vector<int> i1, const vector<int> i2){
+            return i1[1] < i2[1];
+        });
 
-  vector<vector<int>> ans;
-  for(int i=0; i<jobs.size()-1; i++) {
-    vector<vector<int>> res;
-    int start = jobs[i][0];
-    int end = jobs[i][1];
-    for(int j=i+1; j<jobs.size(); j++) {
-      vector<int> s = jobs[j];
+        int ans = 1;
+        int start = acts[0][0], end = acts[0][1];
+        for(int i=1; i<acts.size(); i++) {
+            vector<int> s = acts[i];
+            if(end <= s[0]){
+                ans++;
+                start = s[0];
+                end = s[1];
+            }
+        }
 
-      if(end <= s[0]) {
-        res.push_back({start, end});
-        start = s[0];
-        end = s[1];
-      }
-    }
-    res.push_back({start, end});
+        cout << ans << endl;
 
-    if(ans.size() < res.size()) ans = res;
-  }
-
-  for(int i=0; i<ans.size(); i++) {
-    cout << ans[i][0] << " " << ans[i][1] << endl;
-  }
+	}
+	return 0;
 }
