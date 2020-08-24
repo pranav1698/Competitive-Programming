@@ -15,31 +15,23 @@
  */
 class Solution {
 public:
-    int findLeftSum(TreeNode* parent, TreeNode* node, int sum) {
-        if(node->left == NULL && node->right == NULL) {
-            if(node == parent->left){
-                sum = sum + node->val;
-                return sum;
-            }
+    int getLeftSum(TreeNode* root) {
+        if(root == NULL) return 0;
+
+        if(root->left) {
+            if(root->left->left == NULL && root->left->right == NULL)
+                return root->left->val + getLeftSum(root->left) + getLeftSum(root->right);
+            else
+                return getLeftSum(root->left) + getLeftSum(root->right);
         }
 
-        int leftSum = 0;
-        int rightSum = 0;
 
-        if(node->left)
-            leftSum = findLeftSum(node, node->left, sum);
-        if(node->right)
-            rightSum = findLeftSum(node, node->right, sum);
-
-        return leftSum + rightSum;
+        return getLeftSum(root->right);
     }
 
     int sumOfLeftLeaves(TreeNode* root) {
         if(root == NULL) return 0;
 
-        if(root->left == NULL && root->right == NULL)
-            return 0;
-
-        return findLeftSum(NULL, root, 0);
+        return getLeftSum(root);
     }
 };
