@@ -5,11 +5,13 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int maxprofit = 0;
-        for(int i = 1; i < prices.size(); i++){
-          if(prices[i] > prices[i - 1])
-            maxprofit += prices[i] - prices[ i - 1];
+        int firstBuy = INT_MAX, secondBuy = INT_MAX, firstProfit = 0, secondProfit = 0;
+        for(int currPrice: prices) {
+            firstBuy = min(firstBuy, currPrice);
+            firstProfit = max(firstProfit, currPrice - firstBuy);
+            secondBuy = min(secondBuy, currPrice - firstProfit);
+            secondProfit = max(secondProfit, currPrice - secondBuy);
         }
-      return maxprofit;
+        return secondProfit;
     }
 };
