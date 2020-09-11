@@ -23,9 +23,9 @@ public:
             }
         }
 
-        int ans=INT_MIN;
-        for(int i=0; i<nums.size(); i++) ans = max(ans, max_dp[i]);
+        int res=INT_MIN;
+        for(int i=0; i<nums.size(); i++) res = max(res, max_dp[i]);
 
-        return ans;
+        return res;
     }
 };
