@@ -7,7 +7,7 @@ bool Solution::hotel(vector<int> &arrive, vector<int> &depart, int K) {
     int N=arrive.size();
 
     vector<pair<int, int>> v;
-    for(int i=0; i<N; i++) {
+    for(int i=0; i<N; i++) { 
         v.push_back({arrive[i], 1});
         v.push_back({depart[i], 0});
     }
