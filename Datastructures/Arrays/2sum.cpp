@@ -1,3 +1,7 @@
+// Two Sum
+// SlothyCoder16
+// September 22, 2020
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
