@@ -36,25 +36,36 @@ ListNode* Solution::partition(ListNode* A, int B) {
 
 
 // O(1) space solution
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 ListNode* Solution::partition(ListNode* A, int B) {
-    ListNode* l1 = new ListNode(0);
-    ListNode* l2 = new ListNode(0);
+    ListNode* l1=new ListNode(0);
+    ListNode* l2=new ListNode(0);
 
     ListNode* start1=l1;
     ListNode* start2=l2;
 
     while(A!=NULL) {
-        if(A->val<B) {
-            start1->next=A;
-            start1=start1->next;
+        if(A->val < B) {
+            l1->next=A;
+            l1=l1->next;
+            A=A->next;
         } else {
-            start2->next=A;
-            start2=start2->next;
+            l2->next=A;
+            l2=l2->next;
+            A=A->next;
         }
-        A=A->next;
     }
 
-    start1->next=l2->next;
-    start2->next=NULL;
-    return l1->next;
+    l2->next=NULL;
+    l1->next=start2->next;
+
+    return start1->next;
+
 }
