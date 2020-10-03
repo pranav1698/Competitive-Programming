@@ -1,60 +1,53 @@
-// Simplify Path using c++ stack
+// Simplify UNIX path
 // SlothyCoder16
-// July 17, 2020
+// October 04, 2020
 
-class Solution {
-public:
-    string simplifyPath(string path) {
-        string res = "/";
-        stack <string> s;
+string Solution::simplifyPath(string A) {
+    string res="";
+    string s="";
+    stack<string> st;
 
-        string substr = "";
-        for(int i=0; i<path.length(); i++){
-            if(path[i] == '/') {
-                if(substr.length() != 0 && substr != "."){
-                    if(substr == "..") {
-                        if(!s.empty()){
-                            s.pop();
-                            s.pop();
-                        }
-                    }
-                    if(substr != "..") {
-                        s.push(substr);
-                        s.push("/");
-                    }
+    for(int i=1; i<A.size(); i++) {
+        if(A[i]=='/') {
+            if(s==".") {
+                s="";
+            } else if(s=="..") {
+                if(!st.empty()) {
+                    st.pop();
                 }
-                substr = "";
-            } else {
-                substr = substr + path[i];
-            }
-
-            if(i == path.length() - 1) {
-                if(substr.length() != 0 && substr != "."){
-                    if(substr == "..") {
-                         if(!s.empty()){
-                            s.pop();
-                            s.pop();
-                        }
-                    }
-                    if(substr != "..") {
-                        s.push(substr);
-                        s.push("/");
-                    }
+                s="";
+            } else  {
+                if(s!=""){
+                    st.push(s);
+                    s="";
                 }
             }
+        } else {
+            s+=A[i];
         }
-
-       if(!s.empty())
-            s.pop();
-        vector<string> finalRes;
-        while(!s.empty()) {
-            finalRes.push_back(s.top());
-            s.pop();
-        }
-
-        for(int i=finalRes.size()-1; i>=0; i--)
-            res = res + finalRes[i];
-
-        return res;
     }
-};
+
+    if(s!="") {
+        if(s==".."){
+            if(!st.empty()) st.pop();
+        } else if(s==".") {
+            s="";
+        } else {
+            st.push(s);
+        }
+    }
+
+    vector<string> paths;
+    while(!st.empty()) {
+        paths.push_back(st.top());
+        st.pop();
+    }
+    reverse(paths.begin(), paths.end());
+    if(paths.size()==0) return "/";
+    for(int i=0; i<paths.size(); i++) {
+        res+='/';
+        res+=paths[i];
+    }
+
+    return res;
+}
